@@ -45,6 +45,9 @@
         <div class="row d-flex align-items-center justify-content-between">
           <div class="col-lg-6">
             <div class="footer-copy-right">
+              @if ($data[0]->footer_copyright != null)
+                <p>{{ $data[0]->footer_copyright }}</p>
+              @endif
               <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 Copyright &copy;
                 <script>

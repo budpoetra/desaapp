@@ -18,7 +18,7 @@
               </div>
               <div class="col-md-8 mb-4">
                 <input type="text" class="form-control" id="app_name" name="app_name" value="{{ $data[0]->app_name }}"
-                  aria-describedby="emailHelp" required>
+                  required>
               </div>
               <div class="col-md-4 py-2">
                 <label for="app_logo">App Logo</label>
@@ -45,7 +45,7 @@
               </div>
               <div class="col-md-8 mb-4">
                 <input type="text" class="form-control" id="home_page_header_text" name="home_page_header_text"
-                  value="{{ $data[0]->home_page_header_text }}" aria-describedby="emailHelp" required>
+                  value="{{ $data[0]->home_page_header_text }}" required>
               </div>
               <div class="col-md-4 pt-5">
                 <label for="home_page_second_text">Home Page Second Text</label>
@@ -74,35 +74,42 @@
               </div>
               <div class="col-md-8 mb-4">
                 <input type="text" class="form-control" id="footer_facebook" name="footer_facebook"
-                  value="{{ $data[0]->footer_facebook }}" aria-describedby="emailHelp" required>
+                  value="{{ $data[0]->footer_facebook }}" required>
               </div>
               <div class="col-md-4 py-2">
                 <label for="footer_instagram">Footer Instagram Link</label>
               </div>
               <div class="col-md-8 mb-4">
                 <input type="text" class="form-control" id="footer_instagram" name="footer_instagram"
-                  value="{{ $data[0]->footer_instagram }}" aria-describedby="emailHelp" required>
+                  value="{{ $data[0]->footer_instagram }}" required>
               </div>
               <div class="col-md-4 py-2">
                 <label for="footer_twitter">Footer Twitter Link</label>
               </div>
               <div class="col-md-8 mb-4">
                 <input type="text" class="form-control" id="footer_twitter" name="footer_twitter"
-                  value="{{ $data[0]->footer_twitter }}" aria-describedby="emailHelp" required>
+                  value="{{ $data[0]->footer_twitter }}" required>
               </div>
               <div class="col-md-4 py-2">
                 <label for="footer_whatsapp">Footer Whatsapp Link</label>
               </div>
               <div class="col-md-8 mb-4">
                 <input type="text" class="form-control" id="footer_whatsapp" name="footer_whatsapp"
-                  value="{{ $data[0]->footer_whatsapp }}" aria-describedby="emailHelp" required>
+                  value="{{ $data[0]->footer_whatsapp }}" required>
               </div>
               <div class="col-md-4 py-2">
                 <label for="footer_location">Footer Location</label>
               </div>
               <div class="col-md-8 mb-4">
                 <input type="text" class="form-control" id="footer_location" name="footer_location"
-                  value="{{ $data[0]->footer_location }}" aria-describedby="emailHelp" required>
+                  value="{{ $data[0]->footer_location }}" required>
+              </div>
+              <div class="col-md-4 py-2">
+                <label for="footer_location">Footer Copyright</label>
+              </div>
+              <div class="col-md-8 mb-4">
+                <input type="text" class="form-control" id="footer_copyright" name="footer_copyright"
+                  value="{{ $data[0]->footer_copyright }}">
               </div>
             </div>
           </div>

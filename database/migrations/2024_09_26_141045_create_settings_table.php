@@ -27,6 +27,7 @@ class CreateSettingsTable extends Migration
             $table->string('footer_twitter');
             $table->string('footer_whatsapp');
             $table->text('footer_location');
+            $table->string('footer_copyright')->nullable();
             $table->timestamps();
         });
     }

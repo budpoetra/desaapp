@@ -49,7 +49,6 @@ class UserEbookController extends Controller
      */
     public function store(Request $request)
     {
-        ddd($request);
         $rules = [
             'title' => 'required|unique:ebooks',
             'category_id' => 'required',

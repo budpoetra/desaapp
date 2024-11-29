@@ -45,7 +45,7 @@
       }
     }
 
-    iframe {
+    #pdf-reader {
       pointer-events: none;
     }
   </style>

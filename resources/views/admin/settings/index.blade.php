@@ -64,7 +64,7 @@
                 </div>
               </div>
               <div class="col-md-4 pt-5">
-                <label for="footer_text">Home Page Second Text</label>
+                <label for="footer_text">Footer Text</label>
               </div>
               <div class="col-md-8 mb-4">
                 <textarea class="form-control" id="footer_text" name="footer_text" rows="5">{{ $data[0]->footer_text }}</textarea>

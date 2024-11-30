@@ -47,7 +47,7 @@ class User extends Authenticatable
 
     public function ebooks()
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Ebook::class);
     }
 
     public function videos()

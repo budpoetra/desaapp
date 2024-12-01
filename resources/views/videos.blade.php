@@ -53,7 +53,7 @@
               </div>
             </div>
             <nav class="blog-pagination justify-content-center d-flex mb-5" style="margin-top: -2em">
-              {{ $videos->links() }}
+              {{ $videos->onEachSide(0)->links() }}
             </nav>
           </div>
         @else

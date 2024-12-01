@@ -32,8 +32,8 @@
                 </article>
               @endforeach
             </div>
-            <nav class="blog-pagination justify-content-center d-flex mb-5" style="margin-top: -2em">
-              {{ $posts->links() }}
+            <nav class="blog-pagination d-flex justify-content-center mb-5" style="margin-top: -2em">
+              {{ $posts->onEachSide(0)->links() }}
             </nav>
           </div>
         @else

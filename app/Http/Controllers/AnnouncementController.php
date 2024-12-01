@@ -6,7 +6,6 @@ use App\Models\Content;
 use App\Models\Setting;
 use App\Models\Announcement;
 use App\Models\Advertisement;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\App;
 use App\Http\Requests\StoreAnnouncementRequest;
 use App\Http\Requests\UpdateAnnouncementRequest;
@@ -21,7 +20,7 @@ class AnnouncementController extends Controller
     public function index()
     {
         return view('announcements', [
-            'announcements' => Announcement::latest()->filter(request(['search']))->paginate(7)->withQueryString(),
+            'announcements' => Announcement::latest()->filter(request(['search']))->paginate(10)->withQueryString(),
             'primaryAds' => Advertisement::where('type', 'primary')->get(),
             'secondaryAds' => Advertisement::where('type', 'seccondary')->get(),
             'contents' => Content::with(['subContents', 'subContents.subSubContents'])->get(),

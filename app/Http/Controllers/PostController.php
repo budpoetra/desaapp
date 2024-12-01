@@ -20,7 +20,7 @@ class PostController extends Controller
     public function index()
     {
         return view('posts', [
-            'posts' => Post::latest()->filter(request(['search', 'category', 'user']))->paginate(7)->withQueryString(),
+            'posts' => Post::latest()->filter(request(['search', 'category', 'user']))->paginate(10)->withQueryString(),
             'categories' => PostCategory::latest()->get(),
             'allPosts' => Post::all(),
             'primaryAds' => Advertisement::where('type', 'primary')->get(),

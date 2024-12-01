@@ -27,7 +27,7 @@
               @endforeach
             </div>
             <nav class="blog-pagination justify-content-center d-flex mb-5" style="margin-top: -2em">
-              {{ $announcements->links() }}
+              {{ $announcements->onEachSide(0)->links() }}
             </nav>
           </div>
         @else

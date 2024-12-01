@@ -97,7 +97,7 @@
                 <img src="{{ asset('storage/' . $posts[0]->image) }}" alt="">
                 <div class="trend-top-cap">
                   <span>{{ $posts[0]->category->name }}</span>
-                  <h2><a href="/posts/{{ $post->slug }}">{{ Str::limit($posts[0]->title, '80') }}</a>
+                  <h2><a href="/posts/{{ $posts[0]->slug }}">{{ Str::limit($posts[0]->title, '80') }}</a>
                   </h2>
                 </div>
               </div>

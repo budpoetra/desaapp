@@ -48,6 +48,10 @@
     #pdf-reader {
       pointer-events: none;
     }
+
+    .input-group-append button {
+      display: none;
+    }
   </style>
 </head>
 

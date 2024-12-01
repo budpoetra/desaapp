@@ -8,7 +8,7 @@
             <div class="single-footer-caption">
               <!-- logo -->
               <div class="footer-logo">
-                <a href="index.html"><img src="{{ asset('storage/' . $data[0]->app_logo_footer) }}" alt="" /></a>
+                <a href="/"><img src="{{ asset('storage/' . $data[0]->app_logo_footer) }}" alt="" /></a>
               </div>
               <div class="footer-tittle">
                 <div class="footer-pera">

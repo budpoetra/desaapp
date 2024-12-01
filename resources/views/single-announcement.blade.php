@@ -12,8 +12,8 @@
             <div class="blog_details">
               <h2>{{ $announcement->title }}</h2>
               <ul class="blog-info-link mt-3 mb-4">
-                <li><a href="#"><i class="fa fa-user"></i>
-                    Admin</a></li>
+                {{-- <li><i class="fa fa-user"></i>
+                  Admin</li> --}}
                 <li><i class="far fa-clock"></i>
                   <?php
                   $diff = date_diff(date_create($announcement->created_at), date_create());

@@ -18,7 +18,7 @@
                   <ul class="blog-info-link mt-3 mb-4">
                     <li><a href="/ebooks?user={{ $ebook->user->username }}"><i class="fa fa-user"></i>
                         {{ $ebook->user->name }}</a></li>
-                    <li><a href="/ebooks?category={{ $ebook->category->name }}"><i class="fas fa-list"></i>
+                    <li><a href="/ebooks?category={{ $ebook->category->slug }}"><i class="fas fa-list"></i>
                         {{ $ebook->category->name }}</a></li>
                     <li><i class="far fa-clock"></i>
                       <?php

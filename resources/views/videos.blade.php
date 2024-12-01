@@ -58,7 +58,7 @@
           </div>
         @else
           <div class="col-lg-8 mb-5 mb-lg-0">
-            <h5>E-Book not found.</h5>
+            <h5>Video not found.</h5>
           </div>
         @endif
       </div>

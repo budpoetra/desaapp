@@ -14,7 +14,7 @@
               <ul class="blog-info-link mt-3 mb-4">
                 <li><a href="/posts?user={{ $post->user->username }}"><i class="fa fa-user"></i>
                     {{ $post->user->name }}</a></li>
-                <li><a href="/posts?category={{ $post->category->name }}"><i class="fas fa-list"></i>
+                <li><a href="/posts?category={{ $post->category->slug }}"><i class="fas fa-list"></i>
                     {{ $post->category->name }}</a></li>
                 <li><i class="far fa-clock"></i>
                   <?php

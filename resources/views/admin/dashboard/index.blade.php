@@ -89,80 +89,83 @@
     </div>
 
     {{-- Data For Chart --}}
+    @php
+      $thisYear = date('Y');
+    @endphp
     <input type="hidden" id="janPostsCount"
-      value="{{ $posts->where('created_at', '>=', '2024-01-01')->where('created_at', '<=', '2024-01-31')->count() }}">
+      value="{{ $posts->where('created_at', '>=', $thisYear . '-01-01 00:00:00')->where('created_at', '<=', $thisYear . '-01-31 23:59:59')->count() }}">
     <input type="hidden" id="febPostsCount"
-      value="{{ $posts->where('created_at', '>=', '2024-02-01')->where('created_at', '<=', '2024-02-29')->count() }}">
+      value="{{ $posts->where('created_at', '>=', $thisYear . '-02-01 00:00:00')->where('created_at', '<=', $thisYear . '-02-29')->count() }}">
     <input type="hidden" id="marPostsCount"
-      value="{{ $posts->where('created_at', '>=', '2024-03-01')->where('created_at', '<=', '2024-03-31')->count() }}">
+      value="{{ $posts->where('created_at', '>=', $thisYear . '-03-01 00:00:00')->where('created_at', '<=', $thisYear . '-03-31 23:59:59')->count() }}">
     <input type="hidden" id="aprPostsCount"
-      value="{{ $posts->where('created_at', '>=', '2024-04-01')->where('created_at', '<=', '2024-04-30')->count() }}">
+      value="{{ $posts->where('created_at', '>=', $thisYear . '-04-01 00:00:00')->where('created_at', '<=', $thisYear . '-04-30')->count() }}">
     <input type="hidden" id="mayPostsCount"
-      value="{{ $posts->where('created_at', '>=', '2024-05-01')->where('created_at', '<=', '2024-05-31')->count() }}">
+      value="{{ $posts->where('created_at', '>=', $thisYear . '-05-01 00:00:00')->where('created_at', '<=', $thisYear . '-05-31 23:59:59')->count() }}">
     <input type="hidden" id="junPostsCount"
-      value="{{ $posts->where('created_at', '>=', '2024-06-01')->where('created_at', '<=', '2024-06-30')->count() }}">
+      value="{{ $posts->where('created_at', '>=', $thisYear . '-06-01 00:00:00')->where('created_at', '<=', $thisYear . '-06-30')->count() }}">
     <input type="hidden" id="julPostsCount"
-      value="{{ $posts->where('created_at', '>=', '2024-07-01')->where('created_at', '<=', '2024-07-31')->count() }}">
+      value="{{ $posts->where('created_at', '>=', $thisYear . '-07-01 00:00:00')->where('created_at', '<=', $thisYear . '-07-31 23:59:59')->count() }}">
     <input type="hidden" id="augPostsCount"
-      value="{{ $posts->where('created_at', '>=', '2024-08-01')->where('created_at', '<=', '2024-08-31')->count() }}">
+      value="{{ $posts->where('created_at', '>=', $thisYear . '-08-01 00:00:00')->where('created_at', '<=', $thisYear . '-08-31 23:59:59')->count() }}">
     <input type="hidden" id="sepPostsCount"
-      value="{{ $posts->where('created_at', '>=', '2024-09-01')->where('created_at', '<=', '2024-09-30')->count() }}">
+      value="{{ $posts->where('created_at', '>=', $thisYear . '-09-01 00:00:00')->where('created_at', '<=', $thisYear . '-09-30')->count() }}">
     <input type="hidden" id="octPostsCount"
-      value="{{ $posts->where('created_at', '>=', '2024-10-01')->where('created_at', '<=', '2024-10-31')->count() }}">
+      value="{{ $posts->where('created_at', '>=', $thisYear . '-10-01 00:00:00')->where('created_at', '<=', $thisYear . '-10-31 23:59:59')->count() }}">
     <input type="hidden" id="novPostsCount"
-      value="{{ $posts->where('created_at', '>=', '2024-11-01')->where('created_at', '<=', '2024-11-30')->count() }}">
+      value="{{ $posts->where('created_at', '>=', $thisYear . '-11-01 00:00:00')->where('created_at', '<=', $thisYear . '-11-30')->count() }}">
     <input type="hidden" id="decPostsCount"
-      value="{{ $posts->where('created_at', '>=', '2024-12-01')->where('created_at', '<=', '2024-12-31')->count() }}">
+      value="{{ $posts->where('created_at', '>=', $thisYear . '-12-01 00:00:00')->where('created_at', '<=', $thisYear . '-12-31 23:59:59')->count() }}">
 
     <input type="hidden" id="janEbooksCount"
-      value="{{ $ebooks->where('created_at', '>=', '2024-01-01')->where('created_at', '<=', '2024-01-31')->count() }}">
+      value="{{ $ebooks->where('created_at', '>=', $thisYear . '-01-01 00:00:00')->where('created_at', '<=', $thisYear . '-01-31 23:59:59')->count() }}">
     <input type="hidden" id="febEbooksCount"
-      value="{{ $ebooks->where('created_at', '>=', '2024-02-01')->where('created_at', '<=', '2024-02-29')->count() }}">
+      value="{{ $ebooks->where('created_at', '>=', $thisYear . '-02-01 00:00:00')->where('created_at', '<=', $thisYear . '-02-29')->count() }}">
     <input type="hidden" id="marEbooksCount"
-      value="{{ $ebooks->where('created_at', '>=', '2024-03-01')->where('created_at', '<=', '2024-03-31')->count() }}">
+      value="{{ $ebooks->where('created_at', '>=', $thisYear . '-03-01 00:00:00')->where('created_at', '<=', $thisYear . '-03-31 23:59:59')->count() }}">
     <input type="hidden" id="aprEbooksCount"
-      value="{{ $ebooks->where('created_at', '>=', '2024-04-01')->where('created_at', '<=', '2024-04-30')->count() }}">
+      value="{{ $ebooks->where('created_at', '>=', $thisYear . '-04-01 00:00:00')->where('created_at', '<=', $thisYear . '-04-30')->count() }}">
     <input type="hidden" id="mayEbooksCount"
-      value="{{ $ebooks->where('created_at', '>=', '2024-05-01')->where('created_at', '<=', '2024-05-31')->count() }}">
+      value="{{ $ebooks->where('created_at', '>=', $thisYear . '-05-01 00:00:00')->where('created_at', '<=', $thisYear . '-05-31 23:59:59')->count() }}">
     <input type="hidden" id="junEbooksCount"
-      value="{{ $ebooks->where('created_at', '>=', '2024-06-01')->where('created_at', '<=', '2024-06-30')->count() }}">
+      value="{{ $ebooks->where('created_at', '>=', $thisYear . '-06-01 00:00:00')->where('created_at', '<=', $thisYear . '-06-30')->count() }}">
     <input type="hidden" id="julEbooksCount"
-      value="{{ $ebooks->where('created_at', '>=', '2024-07-01')->where('created_at', '<=', '2024-07-31')->count() }}">
+      value="{{ $ebooks->where('created_at', '>=', $thisYear . '-07-01 00:00:00')->where('created_at', '<=', $thisYear . '-07-31 23:59:59')->count() }}">
     <input type="hidden" id="augEbooksCount"
-      value="{{ $ebooks->where('created_at', '>=', '2024-08-01')->where('created_at', '<=', '2024-08-31')->count() }}">
+      value="{{ $ebooks->where('created_at', '>=', $thisYear . '-08-01 00:00:00')->where('created_at', '<=', $thisYear . '-08-31 23:59:59')->count() }}">
     <input type="hidden" id="sepEbooksCount"
-      value="{{ $ebooks->where('created_at', '>=', '2024-09-01')->where('created_at', '<=', '2024-09-30')->count() }}">
+      value="{{ $ebooks->where('created_at', '>=', $thisYear . '-09-01 00:00:00')->where('created_at', '<=', $thisYear . '-09-30')->count() }}">
     <input type="hidden" id="octEbooksCount"
-      value="{{ $ebooks->where('created_at', '>=', '2024-10-01')->where('created_at', '<=', '2024-10-31')->count() }}">
+      value="{{ $ebooks->where('created_at', '>=', $thisYear . '-10-01 00:00:00')->where('created_at', '<=', $thisYear . '-10-31 23:59:59')->count() }}">
     <input type="hidden" id="novEbooksCount"
-      value="{{ $ebooks->where('created_at', '>=', '2024-11-01')->where('created_at', '<=', '2024-11-30')->count() }}">
+      value="{{ $ebooks->where('created_at', '>=', $thisYear . '-11-01 00:00:00')->where('created_at', '<=', $thisYear . '-11-30')->count() }}">
     <input type="hidden" id="decEbooksCount"
-      value="{{ $ebooks->where('created_at', '>=', '2024-12-01')->where('created_at', '<=', '2024-12-31')->count() }}">
+      value="{{ $ebooks->where('created_at', '>=', $thisYear . '-12-01 00:00:00')->where('created_at', '<=', $thisYear . '-12-31 23:59:59')->count() }}">
 
     <input type="hidden" id="janVideosCount"
-      value="{{ $videos->where('created_at', '>=', '2024-01-01')->where('created_at', '<=', '2024-01-31')->count() }}">
+      value="{{ $videos->where('created_at', '>=', $thisYear . '-01-01 00:00:00')->where('created_at', '<=', $thisYear . '-01-31 23:59:59')->count() }}">
     <input type="hidden" id="febVideosCount"
-      value="{{ $videos->where('created_at', '>=', '2024-02-01')->where('created_at', '<=', '2024-02-29')->count() }}">
+      value="{{ $videos->where('created_at', '>=', $thisYear . '-02-01 00:00:00')->where('created_at', '<=', $thisYear . '-02-29')->count() }}">
     <input type="hidden" id="marVideosCount"
-      value="{{ $videos->where('created_at', '>=', '2024-03-01')->where('created_at', '<=', '2024-03-31')->count() }}">
+      value="{{ $videos->where('created_at', '>=', $thisYear . '-03-01 00:00:00')->where('created_at', '<=', $thisYear . '-03-31 23:59:59')->count() }}">
     <input type="hidden" id="aprVideosCount"
-      value="{{ $videos->where('created_at', '>=', '2024-04-01')->where('created_at', '<=', '2024-04-30')->count() }}">
+      value="{{ $videos->where('created_at', '>=', $thisYear . '-04-01 00:00:00')->where('created_at', '<=', $thisYear . '-04-30')->count() }}">
     <input type="hidden" id="mayVideosCount"
-      value="{{ $videos->where('created_at', '>=', '2024-05-01')->where('created_at', '<=', '2024-05-31')->count() }}">
+      value="{{ $videos->where('created_at', '>=', $thisYear . '-05-01 00:00:00')->where('created_at', '<=', $thisYear . '-05-31 23:59:59')->count() }}">
     <input type="hidden" id="junVideosCount"
-      value="{{ $videos->where('created_at', '>=', '2024-06-01')->where('created_at', '<=', '2024-06-30')->count() }}">
+      value="{{ $videos->where('created_at', '>=', $thisYear . '-06-01 00:00:00')->where('created_at', '<=', $thisYear . '-06-30')->count() }}">
     <input type="hidden" id="julVideosCount"
-      value="{{ $videos->where('created_at', '>=', '2024-07-01')->where('created_at', '<=', '2024-07-31')->count() }}">
+      value="{{ $videos->where('created_at', '>=', $thisYear . '-07-01 00:00:00')->where('created_at', '<=', $thisYear . '-07-31 23:59:59')->count() }}">
     <input type="hidden" id="augVideosCount"
-      value="{{ $videos->where('created_at', '>=', '2024-08-01')->where('created_at', '<=', '2024-08-31')->count() }}">
+      value="{{ $videos->where('created_at', '>=', $thisYear . '-08-01 00:00:00')->where('created_at', '<=', $thisYear . '-08-31 23:59:59')->count() }}">
     <input type="hidden" id="sepVideosCount"
-      value="{{ $videos->where('created_at', '>=', '2024-09-01')->where('created_at', '<=', '2024-09-30')->count() }}">
+      value="{{ $videos->where('created_at', '>=', $thisYear . '-09-01 00:00:00')->where('created_at', '<=', $thisYear . '-09-30')->count() }}">
     <input type="hidden" id="octVideosCount"
-      value="{{ $videos->where('created_at', '>=', '2024-10-01')->where('created_at', '<=', '2024-10-31')->count() }}">
+      value="{{ $videos->where('created_at', '>=', $thisYear . '-10-01 00:00:00')->where('created_at', '<=', $thisYear . '-10-31 23:59:59')->count() }}">
     <input type="hidden" id="novVideosCount"
-      value="{{ $videos->where('created_at', '>=', '2024-11-01')->where('created_at', '<=', '2024-11-30')->count() }}">
+      value="{{ $videos->where('created_at', '>=', $thisYear . '-11-01 00:00:00')->where('created_at', '<=', $thisYear . '-11-30')->count() }}">
     <input type="hidden" id="decVideosCount"
-      value="{{ $videos->where('created_at', '>=', '2024-12-01')->where('created_at', '<=', '2024-12-31')->count() }}">
+      value="{{ $videos->where('created_at', '>=', $thisYear . '-12-01 00:00:00')->where('created_at', '<=', $thisYear . '-12-31 23:59:59')->count() }}">
 
     <div class="row">
       <!-- Area Chart -->

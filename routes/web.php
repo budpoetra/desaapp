@@ -36,6 +36,7 @@ use App\Http\Controllers\AdminEbookCategoryController;
 use App\Http\Controllers\AdminSubSubContentController;
 use App\Http\Controllers\UserChangePasswordController;
 use App\Http\Controllers\AdminChangePasswordController;
+use App\Http\Controllers\AdminPlaylistVideoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,6 +103,7 @@ Route::resource('/admin/post-categories', AdminPostCategoryController::class)->m
 Route::resource('/admin/ebooks', AdminEbookController::class)->middleware('auth', 'is_admin');
 Route::resource('/admin/ebook-categories', AdminEbookCategoryController::class)->middleware('auth', 'is_admin');
 Route::resource('/admin/videos', AdminVideoController::class)->middleware('auth', 'is_admin');
+Route::resource('/admin/playlist-videos', AdminPlaylistVideoController::class)->middleware('auth', 'is_admin');
 Route::resource('/admin/announcements', AdminAnnouncementController::class)->middleware('auth', 'is_admin');
 Route::resource('/admin/advertisements', AdminAdvertisementController::class)->middleware('auth', 'is_admin');
 Route::resource('/admin/contents', AdminContentController::class)->middleware('auth', 'is_admin');

@@ -43,7 +43,7 @@
                   <div class="whats-news-caption">
                     <div class="row">
                       @foreach ($subContent[0]->subSubContents as $subSubContent)
-                        <a href="/sub-content/{{ $subSubContent->slug }}">
+                        <a href="/sub-sub-content/{{ $subSubContent->slug }}">
                           <div class="col-lg-3 col-md-3">
                             <div class="single-what-news mb-100">
                               <div class="what-img">

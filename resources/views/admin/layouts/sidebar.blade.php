@@ -79,11 +79,25 @@
     </div>
   </li>
 
-  <!-- Video -->
-  <li class="nav-item {{ Request::is('admin/videos*') ? 'active' : '' }}" style="margin-bottom: -5%">
-    <a class="nav-link" href="/admin/videos">
+  <!-- Nav Item - Pages Collapse Menu Videos -->
+  <li class="nav-item {{ Request::is('admin/videos*') || Request::is('admin/playlist-videos*') ? 'active' : '' }}"
+    style="margin-bottom: -5%">
+    <a class="nav-link {{ Request::is('admin/videos*') || Request::is('admin/playlist-videos*') ? '' : 'collapsed' }}"
+      href="#" data-toggle="collapse" data-target="#collapseVideos" aria-expanded="true"
+      aria-controls="collapseVideos">
       <i class="fas fa-video"></i>
-      <span>Videos</span></a>
+      <span>Videos</span>
+    </a>
+    <div id="collapseVideos"
+      class="collapse {{ Request::is('admin/videos*') || Request::is('admin/playlist-videos*') ? 'show' : '' }}"
+      aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item {{ Request::is('admin/videos*') ? 'active' : '' }}" href="/admin/videos">All Videos
+        </a>
+        <a class="collapse-item {{ Request::is('admin/playlist-videos*') ? 'active' : '' }}"
+          href="/admin/playlist-videos">Playlist Videos</a>
+      </div>
+    </div>
   </li>
 
   <!-- Announcement -->

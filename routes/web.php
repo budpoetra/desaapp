@@ -62,9 +62,11 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('content/{content:slug}', [ContentController::class, 'show']);
-Route::get('sub-content/{subContent:slug}', [ContentController::class, 'subshow']);
-Route::get('sub-sub-content/{subSubContent:slug}', [ContentController::class, 'subsubshow']);
+Route::controller(ContentController::class)->group(function () {
+    Route::get('content/{content:slug}', 'show');
+    Route::get('sub-content/{subContent:slug}', 'subshow');
+    Route::get('sub-sub-content/{subSubContent:slug}', 'subsubshow');
+});
 
 Route::resource('/posts', PostController::class);
 Route::resource('/ebooks', EbookController::class);
@@ -73,58 +75,73 @@ Route::resource('/videos', VideoController::class);
 Route::resource('/announcements', AnnouncementController::class);
 Route::get('/announcements/{announcement:slug}/pdf', [AnnouncementController::class, 'pdf']);
 
-Route::get('/login', [AuthController::class, 'index'])->middleware('guest');
-Route::post('/login', [AuthController::class, 'authenticate'])->middleware('guest');
-Route::get('/register', [AuthController::class, 'register'])->middleware('guest');
-Route::post('/register', [AuthController::class, 'authenticateRegister'])->middleware('guest');
-Route::get('/forgot-password', [AuthController::class, 'forgotPassword'])->middleware('guest');
-Route::post('/forgot-password', [AuthController::class, 'checkDataForgotPassword'])->middleware('guest');
-Route::get('/change-password', [AuthController::class, 'changeForgotPassword'])->middleware('guest');
-Route::post('/change-password', [AuthController::class, 'changePassword'])->middleware('guest');
-Route::post('/logout', [AuthController::class, 'logout']);
+Route::middleware('guest')->group(function () {
+    Route::controller(AuthController::class)->group(function () {
+        Route::get('/login', 'index');
+        Route::post('/login', 'authenticate');
+        Route::get('/register', 'register');
+        Route::post('register', 'authenticateRegister');
+        Route::get('/forgot-password', 'forgotPassword');
+        Route::post('/forgot-password', 'checkDataForgotPassword');
+        Route::get('/change-password', 'changeForgotPassword');
+        Route::post('/change-password', 'changePassword');
+        Route::post('/logout', 'logout');
+    });
+});
+
 
 // Admin Route
-Route::get('/admin', function () {
-    return view('admin.dashboard.index', [
-        'data' => Setting::all(),
-        'users' => User::where('role', 'author')->count(),
-        'posts' => Post::all(),
-        'ebooks' => Ebook::all(),
-        'videos' => Video::all(),
-    ]);
-})->middleware('auth', 'is_admin');
-Route::resource('/admin/users', AdminUserController::class)->middleware('auth', 'is_admin');
-Route::get('/admin/new-users', [AdminNewUserController::class, 'index'])->middleware('auth', 'is_admin');
-Route::get('/admin/new-users/{user:username}', [AdminNewUserController::class, 'show'])->middleware('auth', 'is_admin');
-Route::delete('/admin/new-users/{user:username}', [AdminNewUserController::class, 'destroy'])->middleware('auth', 'is_admin');
-Route::post('/admin/send-register-mail', [MailController::class, 'sendRegisterMail'])->middleware('auth', 'is_admin');
-Route::resource('/admin/posts', AdminPostController::class)->middleware('auth', 'is_admin');
-Route::resource('/admin/post-categories', AdminPostCategoryController::class)->middleware('auth', 'is_admin');
-Route::resource('/admin/ebooks', AdminEbookController::class)->middleware('auth', 'is_admin');
-Route::resource('/admin/ebook-categories', AdminEbookCategoryController::class)->middleware('auth', 'is_admin');
-Route::resource('/admin/videos', AdminVideoController::class)->middleware('auth', 'is_admin');
-Route::resource('/admin/playlist-videos', AdminPlaylistVideoController::class)->middleware('auth', 'is_admin');
-Route::resource('/admin/announcements', AdminAnnouncementController::class)->middleware('auth', 'is_admin');
-Route::resource('/admin/advertisements', AdminAdvertisementController::class)->middleware('auth', 'is_admin');
-Route::resource('/admin/contents', AdminContentController::class)->middleware('auth', 'is_admin');
-Route::resource('/admin/sub-contents', AdminSubContentController::class)->middleware('auth', 'is_admin');
-Route::resource('/admin/sub-sub-contents', AdminSubSubContentController::class)->middleware('auth', 'is_admin');
-Route::resource('/admin/settings', SettingController::class)->middleware('auth', 'is_admin');
-Route::resource('/admin/profiles', AdminProfileController::class)->middleware('auth', 'is_admin');
-Route::resource('/admin/change-password', AdminChangePasswordController::class)->middleware('auth', 'is_admin');
+Route::middleware('auth', 'is_admin')->group(function () {
+    Route::get('/admin', function () {
+        return view('admin.dashboard.index', [
+            'data' => Setting::all(),
+            'users' => User::where('role', 'author')->count(),
+            'posts' => Post::all(),
+            'ebooks' => Ebook::all(),
+            'videos' => Video::all(),
+        ]);
+    });
+    Route::resource('/admin/users', AdminUserController::class);
+
+    Route::controller(AdminNewUserController::class)->group(function () {
+        Route::get('/admin/new-users', 'index');
+        Route::get('/admin/new-users/{user:username}', 'show');
+        Route::delete('/admin/new-users/{user:username}', 'destroy');
+    });
+
+    Route::post('/admin/send-register-mail', [MailController::class, 'sendRegisterMail']);
+
+    Route::resource('/admin/posts', AdminPostController::class);
+    Route::resource('/admin/post-categories', AdminPostCategoryController::class);
+    Route::resource('/admin/ebooks', AdminEbookController::class);
+    Route::resource('/admin/ebook-categories', AdminEbookCategoryController::class);
+    Route::resource('/admin/videos', AdminVideoController::class);
+    Route::resource('/admin/playlist-videos', AdminPlaylistVideoController::class);
+    Route::resource('/admin/announcements', AdminAnnouncementController::class);
+    Route::resource('/admin/advertisements', AdminAdvertisementController::class);
+    Route::resource('/admin/contents', AdminContentController::class);
+    Route::resource('/admin/sub-contents', AdminSubContentController::class);
+    Route::resource('/admin/sub-sub-contents', AdminSubSubContentController::class);
+    Route::resource('/admin/settings', SettingController::class);
+    Route::resource('/admin/profiles', AdminProfileController::class);
+    Route::resource('/admin/change-password', AdminChangePasswordController::class);
+});
+
 
 // User Route
-Route::get('/user', function () {
-    return view('user.dashboard.index', [
-        'data' => Setting::all(),
-        'posts' => Post::where('user_id', auth()->user()->id)->get(),
-        'ebooks' => Ebook::where('user_id', auth()->user()->id)->get(),
-        'videos' => Video::where('user_id', auth()->user()->id)->get(),
-    ]);
-})->middleware('auth', 'is_author');
-Route::resource('/user/posts', UserPostController::class)->middleware('auth', 'is_author');
-Route::resource('/user/ebooks', UserEbookController::class)->middleware('auth', 'is_author');
-Route::resource('/user/videos', UserVideoController::class)->middleware('auth', 'is_author');
-Route::resource('/user/playlist-videos', UserPlaylistVideoController::class)->middleware('auth', 'is_author');
-Route::resource('/user/profiles', UserProfileController::class)->middleware('auth', 'is_author');
-Route::resource('/user/change-password', UserChangePasswordController::class)->middleware('auth', 'is_author');
+Route::middleware('auth', 'is_user')->group(function () {
+    Route::get('/user', function () {
+        return view('user.dashboard.index', [
+            'data' => Setting::all(),
+            'posts' => Post::where('user_id', auth()->user()->id)->get(),
+            'ebooks' => Ebook::where('user_id', auth()->user()->id)->get(),
+            'videos' => Video::where('user_id', auth()->user()->id)->get(),
+        ]);
+    });
+    Route::resource('/user/posts', UserPostController::class);
+    Route::resource('/user/ebooks', UserEbookController::class);
+    Route::resource('/user/videos', UserVideoController::class);
+    Route::resource('/user/playlist-videos', UserPlaylistVideoController::class);
+    Route::resource('/user/profiles', UserProfileController::class);
+    Route::resource('/user/change-password', UserChangePasswordController::class);
+});

@@ -52,6 +52,14 @@
     .input-group-append button {
       display: none;
     }
+
+    a {
+      color: #fc3f00;
+    }
+
+    a:hover {
+      color: #b8afaf;
+    }
   </style>
 </head>
 

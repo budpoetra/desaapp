@@ -89,10 +89,15 @@ Route::middleware('guest')->group(function () {
     });
 });
 
+Route::middleware('auth')->group(function () {
+    Route::controller(AuthController::class)->group(function () {
+        Route::post('/logout', 'logout');
+    });
+});
 
 // Admin Route
-Route::middleware('auth', 'is_admin')->group(function () {
-    Route::get('/admin', function () {
+Route::middleware('auth', 'is_admin')->prefix('admin')->group(function () {
+    Route::get('/', function () {
         return view('admin.dashboard.index', [
             'data' => Setting::all(),
             'users' => User::where('role', 'author')->count(),
@@ -101,36 +106,35 @@ Route::middleware('auth', 'is_admin')->group(function () {
             'videos' => Video::all(),
         ]);
     });
-    Route::resource('/admin/users', AdminUserController::class);
+    Route::resource('/users', AdminUserController::class);
 
     Route::controller(AdminNewUserController::class)->group(function () {
-        Route::get('/admin/new-users', 'index');
-        Route::get('/admin/new-users/{user:username}', 'show');
-        Route::delete('/admin/new-users/{user:username}', 'destroy');
+        Route::get('/new-users', 'index');
+        Route::get('/new-users/{user:username}', 'show');
+        Route::delete('/new-users/{user:username}', 'destroy');
     });
 
-    Route::post('/admin/send-register-mail', [MailController::class, 'sendRegisterMail']);
+    Route::post('/send-register-mail', [MailController::class, 'sendRegisterMail']);
 
-    Route::resource('/admin/posts', AdminPostController::class);
-    Route::resource('/admin/post-categories', AdminPostCategoryController::class);
-    Route::resource('/admin/ebooks', AdminEbookController::class);
-    Route::resource('/admin/ebook-categories', AdminEbookCategoryController::class);
-    Route::resource('/admin/videos', AdminVideoController::class);
-    Route::resource('/admin/playlist-videos', AdminPlaylistVideoController::class);
-    Route::resource('/admin/announcements', AdminAnnouncementController::class);
-    Route::resource('/admin/advertisements', AdminAdvertisementController::class);
-    Route::resource('/admin/contents', AdminContentController::class);
-    Route::resource('/admin/sub-contents', AdminSubContentController::class);
-    Route::resource('/admin/sub-sub-contents', AdminSubSubContentController::class);
-    Route::resource('/admin/settings', SettingController::class);
-    Route::resource('/admin/profiles', AdminProfileController::class);
-    Route::resource('/admin/change-password', AdminChangePasswordController::class);
+    Route::resource('/posts', AdminPostController::class);
+    Route::resource('/post-categories', AdminPostCategoryController::class);
+    Route::resource('/ebooks', AdminEbookController::class);
+    Route::resource('/ebook-categories', AdminEbookCategoryController::class);
+    Route::resource('/videos', AdminVideoController::class);
+    Route::resource('/playlist-videos', AdminPlaylistVideoController::class);
+    Route::resource('/announcements', AdminAnnouncementController::class);
+    Route::resource('/advertisements', AdminAdvertisementController::class);
+    Route::resource('/contents', AdminContentController::class);
+    Route::resource('/sub-contents', AdminSubContentController::class);
+    Route::resource('/sub-sub-contents', AdminSubSubContentController::class);
+    Route::resource('/settings', SettingController::class);
+    Route::resource('/profiles', AdminProfileController::class);
+    Route::resource('/change-password', AdminChangePasswordController::class);
 });
 
-
 // User Route
-Route::middleware('auth', 'is_user')->group(function () {
-    Route::get('/user', function () {
+Route::middleware('auth', 'is_user')->prefix('user')->group(function () {
+    Route::get('/', function () {
         return view('user.dashboard.index', [
             'data' => Setting::all(),
             'posts' => Post::where('user_id', auth()->user()->id)->get(),
@@ -138,10 +142,10 @@ Route::middleware('auth', 'is_user')->group(function () {
             'videos' => Video::where('user_id', auth()->user()->id)->get(),
         ]);
     });
-    Route::resource('/user/posts', UserPostController::class);
-    Route::resource('/user/ebooks', UserEbookController::class);
-    Route::resource('/user/videos', UserVideoController::class);
-    Route::resource('/user/playlist-videos', UserPlaylistVideoController::class);
-    Route::resource('/user/profiles', UserProfileController::class);
-    Route::resource('/user/change-password', UserChangePasswordController::class);
+    Route::resource('/posts', UserPostController::class);
+    Route::resource('/ebooks', UserEbookController::class);
+    Route::resource('/videos', UserVideoController::class);
+    Route::resource('/playlist-videos', UserPlaylistVideoController::class);
+    Route::resource('/profiles', UserProfileController::class);
+    Route::resource('/change-password', UserChangePasswordController::class);
 });

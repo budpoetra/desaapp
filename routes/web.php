@@ -77,7 +77,7 @@ Route::get('/announcements/{announcement:slug}/pdf', [AnnouncementController::cl
 
 Route::middleware('guest')->group(function () {
     Route::controller(AuthController::class)->group(function () {
-        Route::get('/login', 'index');
+        Route::get('/login', 'index')->name('login');
         Route::post('/login', 'authenticate');
         Route::get('/register', 'register');
         Route::post('register', 'authenticateRegister');

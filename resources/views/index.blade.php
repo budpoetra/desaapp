@@ -69,147 +69,154 @@
   @endif
 
   <!-- Trending Area Start -->
-  <div class="trending-area fix">
-    <div class="container">
-      <div class="trending-main">
-        <!-- Trending Tittle -->
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="trending-tittle">
-              <strong>New Posts</strong>
-              <div class="trending-animated">
-                <ul id="js-news" class="js-hidden">
-                  @foreach ($posts as $post)
-                    <li class="news-item"><a href="/posts/{{ $post->slug }}"
-                        style="text-decoration: none">{{ Str::limit($post->title, 70) }}</a></li>
-                  @endforeach
-                </ul>
-              </div>
+  @if ($posts->count() > 0)
+    <div class="trending-area fix">
+      <div class="container">
+        <div class="trending-main">
+          <!-- Trending Tittle -->
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="trending-tittle">
+                <strong>New Posts</strong>
+                <div class="trending-animated">
+                  <ul id="js-news" class="js-hidden">
+                    @foreach ($posts as $post)
+                      <li class="news-item"><a href="/posts/{{ $post->slug }}"
+                          style="text-decoration: none">{{ Str::limit($post->title, 70) }}</a></li>
+                    @endforeach
+                  </ul>
+                </div>
 
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-8">
-            <!-- Trending Top -->
-            <div class="trending-top mb-30">
-              <div class="trend-top-img">
-                <img src="{{ asset('storage/' . $posts[0]->image) }}" alt="">
-                <div class="trend-top-cap">
-                  <span>{{ $posts[0]->category->name }}</span>
-                  <h2><a href="/posts/{{ $posts[0]->slug }}">{{ Str::limit($posts[0]->title, '80') }}</a>
-                  </h2>
+          <div class="row">
+            <div class="col-lg-8">
+              <!-- Trending Top -->
+              <div class="trending-top mb-30">
+                <div class="trend-top-img">
+                  <img src="{{ asset('storage/' . $posts[0]->image) }}" alt="">
+                  <div class="trend-top-cap">
+                    <span>{{ $posts[0]->category->name }}</span>
+                    <h2><a href="/posts/{{ $posts[0]->slug }}">{{ Str::limit($posts[0]->title, '80') }}</a>
+                    </h2>
+                  </div>
+                </div>
+              </div>
+              <!-- Trending Bottom -->
+              <div class="trending-bottom">
+                <div class="row">
+                  @foreach ($posts->skip(1)->take(3) as $post)
+                    <div class="col-lg-4">
+                      <div class="single-bottom mb-35">
+                        <div class="trend-bottom-img mb-30">
+                          <img class="rounded" src="{{ asset('storage/' . $post->image) }}" alt="">
+                        </div>
+                        <div class="trend-bottom-cap">
+                          <span class="{{ $post->category->color }}">{{ $post->category->name }}</span>
+                          <h4><a href="/posts/{{ $post->slug }}">{{ Str::limit($post->title, '40') }}</a></h4>
+                        </div>
+                      </div>
+                    </div>
+                  @endforeach
                 </div>
               </div>
             </div>
-            <!-- Trending Bottom -->
-            <div class="trending-bottom">
-              <div class="row">
-                @foreach ($posts->skip(1)->take(3) as $post)
-                  <div class="col-lg-4">
-                    <div class="single-bottom mb-35">
-                      <div class="trend-bottom-img mb-30">
-                        <img class="rounded" src="{{ asset('storage/' . $post->image) }}" alt="">
-                      </div>
-                      <div class="trend-bottom-cap">
-                        <span class="{{ $post->category->color }}">{{ $post->category->name }}</span>
-                        <h4><a href="/posts/{{ $post->slug }}">{{ Str::limit($post->title, '40') }}</a></h4>
-                      </div>
+            <!-- Riht content -->
+            <div class="col-lg-4">
+              @foreach ($posts->skip(4) as $post)
+                <div class="trand-right-single d-flex">
+                  <div class="trand-right-img">
+                    <img src="{{ asset('storage/' . $post->image) }}" alt="">
+                  </div>
+                  <div class="trand-right-cap">
+                    <span class="{{ $post->category->color }}">{{ $post->category->name }}</span>
+                    <h4><a href="/posts/{{ $post->slug }}">{{ Str::limit($post->title, '40') }}</a></h4>
+                  </div>
+                </div>
+              @endforeach
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  @endif
+  <!-- Trending Area End -->
+
+  @if ($ebooks->count() > 0)
+    <div class="weekly2-news-area gray-bg pt-4 pb-4">
+      <div class="container">
+        <div class="weekly2-wrapper">
+          <!-- section Tittle -->
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="section-tittle mb-10">
+                <h3>E-Books</h3>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="weekly2-news-active dot-style d-flex dot-style">
+                @foreach ($ebooks as $ebook)
+                  <div class="weekly2-single">
+                    <div class="weekly2-img">
+                      <img src="{{ asset('storage/' . $ebook->image) }}" alt="" />
+                    </div>
+                    <div class="weekly2-caption">
+                      <span class="{{ $ebook->category->color }}">{{ $ebook->category->name }}</span>
+                      <p>{{ date('d M Y', strtotime($ebook->created_at)) }}</p>
+                      <h4>
+                        <a href="/ebooks/{{ $ebook->slug }}">{{ $ebook->title }}</a>
+                      </h4>
                     </div>
                   </div>
                 @endforeach
               </div>
             </div>
           </div>
-          <!-- Riht content -->
-          <div class="col-lg-4">
-            @foreach ($posts->skip(4) as $post)
-              <div class="trand-right-single d-flex">
-                <div class="trand-right-img">
-                  <img src="{{ asset('storage/' . $post->image) }}" alt="">
-                </div>
-                <div class="trand-right-cap">
-                  <span class="{{ $post->category->color }}">{{ $post->category->name }}</span>
-                  <h4><a href="/posts/{{ $post->slug }}">{{ Str::limit($post->title, '40') }}</a></h4>
-                </div>
-              </div>
-            @endforeach
-          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Trending Area End -->
-
-  <div class="weekly2-news-area gray-bg pt-4 pb-4">
-    <div class="container">
-      <div class="weekly2-wrapper">
-        <!-- section Tittle -->
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="section-tittle mb-10">
-              <h3>E-Books</h3>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <div class="weekly2-news-active dot-style d-flex dot-style">
-              @foreach ($ebooks as $ebook)
-                <div class="weekly2-single">
-                  <div class="weekly2-img">
-                    <img src="{{ asset('storage/' . $ebook->image) }}" alt="" />
-                  </div>
-                  <div class="weekly2-caption">
-                    <span class="{{ $ebook->category->color }}">{{ $ebook->category->name }}</span>
-                    <p>{{ date('d M Y', strtotime($ebook->created_at)) }}</p>
-                    <h4>
-                      <a href="/ebooks/{{ $ebook->slug }}">{{ $ebook->title }}</a>
-                    </h4>
-                  </div>
-                </div>
-              @endforeach
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  @endif
   <!-- End Weekly-News -->
+
   <!--  Recent Articles start -->
-  <div class="recent-articles pt-20">
-    <div class="container">
-      <div class="recent-wrapper">
-        <!-- section Tittle -->
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="section-tittle mb-30">
-              <h3>Videos</h3>
+  @if ($videos->count() > 0)
+    <div class="recent-articles pt-20">
+      <div class="container">
+        <div class="recent-wrapper">
+          <!-- section Tittle -->
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="section-tittle mb-30">
+                <h3>Videos</h3>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <div class="recent-active dot-style d-flex">
-              @foreach ($videos as $video)
-                <div class="single-recent mb-100">
-                  <div class="what-img">
-                    <img src="{{ asset('storage/' . $video->thumbnail) }}" alt="" />
+          <div class="row">
+            <div class="col-12">
+              <div class="recent-active dot-style d-flex">
+                @foreach ($videos as $video)
+                  <div class="single-recent mb-100">
+                    <div class="what-img">
+                      <img src="{{ asset('storage/' . $video->thumbnail) }}" alt="" />
+                    </div>
+                    <div class="what-cap">
+                      <span class="color{{ rand(1, 4) }}">{{ $video->user->name }}</span>
+                      <h4>
+                        <a href="videos/{{ $video->slug }}">{{ $video->title }}</a>
+                      </h4>
+                    </div>
                   </div>
-                  <div class="what-cap">
-                    <span class="color{{ rand(1, 4) }}">{{ $video->user->name }}</span>
-                    <h4>
-                      <a href="videos/{{ $video->slug }}">{{ $video->title }}</a>
-                    </h4>
-                  </div>
-                </div>
-              @endforeach
+                @endforeach
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  @endif
   <!--Recent Articles End -->
 
   @if ($secondaryAds->count() > 0)

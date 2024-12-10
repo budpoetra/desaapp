@@ -143,7 +143,7 @@
   @endif
   <!-- Trending Area End -->
 
-  @if ($ebooks->count() > 0)
+  @if ($ebooks->count() >= 5)
     <div class="weekly2-news-area gray-bg pt-4 pb-4">
       <div class="container">
         <div class="weekly2-wrapper">
@@ -182,7 +182,7 @@
   <!-- End Weekly-News -->
 
   <!--  Recent Articles start -->
-  @if ($videos->count() > 0)
+  @if ($videos->count() >= 5)
     <div class="recent-articles pt-20">
       <div class="container">
         <div class="recent-wrapper">

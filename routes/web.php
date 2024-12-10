@@ -133,7 +133,7 @@ Route::middleware('auth', 'is_admin')->prefix('admin')->group(function () {
 });
 
 // User Route
-Route::middleware('auth', 'is_user')->prefix('user')->group(function () {
+Route::middleware('auth', 'is_author')->prefix('user')->group(function () {
     Route::get('/', function () {
         return view('user.dashboard.index', [
             'data' => Setting::all(),

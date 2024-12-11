@@ -56,8 +56,15 @@ class AdminAnnouncementController extends Controller
         $slug = Str::of($request->title)->slug('-');
 
         $validatedData = $request->validate($rules);
-        $validatedData['image'] = $request->file('image')->store('announcement-images');
         $validatedData['slug'] = $slug;
+
+        $imageData = $request['image-cropper'];
+        $imageData = str_replace('data:image/png;base64,', '', $imageData);
+        $imageData = str_replace(' ', '+', $imageData);
+        $imageData = base64_decode($imageData);
+        $imageName = 'post-image-' . time() . '.png';
+        $validatedData['image'] = 'post-images/' . $imageName;
+        file_put_contents(public_path('storage/post-images/' . $imageName), $imageData);
 
         Announcement::create($validatedData);
         return redirect('/admin/announcements')->with('success', 'New announcement has been added!');
@@ -119,7 +126,13 @@ class AdminAnnouncementController extends Controller
 
         if ($request->file('image')) {
             Storage::delete($announcement->image);
-            $validatedData['image'] = $request->file('image')->store('announcement-images');
+            $imageData = $request['image-cropper'];
+            $imageData = str_replace('data:image/png;base64,', '', $imageData);
+            $imageData = str_replace(' ', '+', $imageData);
+            $imageData = base64_decode($imageData);
+            $imageName = 'post-image-' . time() . '.png';
+            $validatedData['image'] = 'post-images/' . $imageName;
+            file_put_contents(public_path('storage/post-images/' . $imageName), $imageData);
         }
 
         Announcement::where('id', $announcement->id)->update($validatedData);
